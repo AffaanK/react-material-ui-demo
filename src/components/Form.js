@@ -13,7 +13,7 @@ const Form=() =>{
 
  
   const [ appData, setAppData ] = useState([{id: 1, title:'document1', description:'desc1', email:'test@test.com1', range: 32, valid: true }]);
-  const [formData,setFormData]=useState({})
+  const [formData,setFormData]=useState({id: 2, title:'', description:'', email:'', range:0 , valid: false })
   const [errors,setErrors] =useState({titleError:false,emailError:false,rangeError:false,validError:false})
   const [nextId,setNextId] = useState(3)
   
@@ -24,14 +24,14 @@ useEffect(()=>{
   console.log(localAppData)
   if(localAppData!== null){
     setAppData(localAppData)
-    setFormData({id: (appData[appData.length-1]).id+1, title:'', description:'', email:'', range:0 , valid: false })
+    setFormData()
   }
   else{
     setAppData([{id: 1, title:'document1', description:'desc1', email:'test@test.com1', range: 32, valid: true }])
     setFormData({id: (appData[appData.length-1]).id+1, title:'', description:'', email:'', range:0 , valid: false })
     setNextId((appData[appData.length-1]).id+2)
   }
-},[])
+},[appData])
 
 
   const submitForm=(e)=>{
